@@ -1,55 +1,49 @@
-// import React from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-// const Inicio = () => {
-//   return (
-//     <div>
-//       <h1>Bienvenido a la Carta de Menú con Videos</h1>
-//       <p>Esta es la página de inicio de la aplicación. Aquí podrías incluir una breve descripción de tu aplicación.</p>
-//     </div>
-//   );
-// }
-
-// export default Inicio;
-
-// src/Inicio.js
-import React, { useState } from 'react';
-import Header from '../Componentes/Header';
-import Footer from '../Componentes/Footer';
-import Categorias from '../Componentes/Categorias';
-import ListaPlatos from '../Componentes/ListaPlatos'
-import PlatoEspecifico from '../Componentes/PlatoEspecifico';
+const categorias = [
+  { titulo: 'Entradas', descripcion: 'Deliciosas entradas', video: 'link-a-video' },
+  { titulo: 'Platos principales', descripcion: 'Sabrosos platos principales', video: 'link-a-video' },
+  { titulo: 'Postres', descripcion: 'Irresistibles postres', video: 'link-a-video' },
+  { titulo: 'Bebidas', descripcion: 'Refrescantes bebidas', video: 'link-a-video' },
+];
 
 const Inicio = () => {
-  const [view, setView] = useState('categorias'); // Estado para controlar la vista
-  const [selectedCategoria, setSelectedCategoria] = useState(null); // Estado para la categoría seleccionada
-  const [selectedPlato, setSelectedPlato] = useState(null); // Estado para el plato seleccionado
+  const navigate = useNavigate();
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+    verticalSwiping: true
+  };
 
   const handleCategoriaClick = (categoria) => {
-    setSelectedCategoria(categoria);
-    setView('listaPlatos');
-  };
-
-  const handlePlatoClick = (plato) => {
-    setSelectedPlato(plato);
-    setView('platoEspecifico');
-  };
-
-  const renderView = () => {
-    switch (view) {
-      case 'listaPlatos':
-        return <ListaPlatos categoria={selectedCategoria} onPlatoClick={handlePlatoClick} />;
-      case 'platoEspecifico':
-        return <PlatoEspecifico plato={selectedPlato} />;
-      default:
-        return <Categorias onCategoriaClick={handleCategoriaClick} />;
-    }
+    navigate(`/listado-platos/${categoria.titulo}`);
   };
 
   return (
-    <div>
-      <Header />
-      {renderView()}
-      <Footer />
+    <div className="inicio">
+      <div className="container mt-5">
+        <Slider {...settings}>
+          {categorias.map((categoria, index) => (
+            <div key={index} className="categoria" onClick={() => handleCategoriaClick(categoria)}>
+              <h2>{categoria.titulo}</h2>
+              <p>{categoria.descripcion}</p>
+              <video controls>
+                <source src={categoria.video} type="video/mp4" />
+                Tu navegador no soporta la etiqueta de video.
+              </video>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
