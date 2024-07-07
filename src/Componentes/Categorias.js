@@ -1,13 +1,12 @@
-// src/components/Categorias.js
-import React from 'react';
+// src/Componentes/categorias.js
 
 const categorias = [
-  { titulo: 'Entradas', descripcion: 'Deliciosas entradas', video: 'link-a-video' },
-  { titulo: 'Platos principales', descripcion: 'Sabrosos platos principales', video: 'link-a-video' },
-  { titulo: 'Postres', descripcion: 'Irresistibles postres', video: 'link-a-video' },
-  { titulo: 'Bebidas', descripcion: 'Refrescantes bebidas', video: 'link-a-video' },
+  { titulo: 'Entradas', descripcion: 'Deliciosas entradas', video: 'link-a-video', platos: [] },
+  { titulo: 'Platos principales', descripcion: 'Sabrosos platos principales', video: 'link-a-video', platos: [] },
+  { titulo: 'Postres', descripcion: 'Irresistibles postres', video: 'link-a-video', platos: [] },
+  { titulo: 'Bebidas', descripcion: 'Refrescantes bebidas', video: 'link-a-video', platos: [] },
+  { titulo: 'Tablas', descripcion: 'Jamones Ibericos', video: 'link-a-video', platos: [] },
 ];
-
 const Categorias = ({ onCategoriaClick }) => {
   return (
     <div>
@@ -25,4 +24,5 @@ const Categorias = ({ onCategoriaClick }) => {
   );
 };
 
-export default Categorias;
+export default categorias;
+
