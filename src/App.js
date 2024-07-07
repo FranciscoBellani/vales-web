@@ -11,18 +11,29 @@ import ListadoPlatos from './Paginas/ListadoPlatos';
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Inicio categorias={categorias} />} />
-          <Route path="/listado-platos/:categoria" element={<ListadoPlatos />} />
-          <Route path="/categoria/:titulo" element={<Categoria categorias={categorias} />} />
-        </Routes>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }
 
-export default App;
+function AppContent() {
+  const navigate = useNavigate();
 
+  const handleCategoriaClick = (categoria) => {
+    navigate(`/categoria/${categoria.titulo.toLowerCase()}`);
+  };
+
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Inicio categorias={categorias} />} />
+        <Route path="/listado-platos/:categoria" element={<ListadoPlatos />} />
+        <Route path="/categoria/:titulo" element={<Categoria categorias={categorias} />} />
+      </Routes>
+      <Footer onCategoriaClick={handleCategoriaClick} />
+    </div>
+  );
+}
+
+export default App;
