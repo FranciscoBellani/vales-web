@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../Estilos/styles.css'; // Asegúrate de que esta ruta sea correcta
 
 const categorias = [
   { titulo: 'Entradas', descripcion: 'Deliciosas entradas', video: 'link-a-video' },
@@ -13,7 +14,7 @@ const categorias = [
 
 const Inicio = () => {
   const navigate = useNavigate();
-  
+
   const settings = {
     dots: true,
     infinite: true,
